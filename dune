@@ -1,24 +1,40 @@
+(dirs :standard \ node_modules)
+
 ; (subdir
 ;  node_modules
-;  (dirs @glennsl)
-;  (data_only_dirs bs-decoders)
+;  (vendored_dirs @ahrefs @glennsl)
+;  (dirs @ahrefs @glennsl)
 ;  (subdir
-;   @glennsl/bs-json/src
-;   (library
-;    (name bs_json)
-;    (wrapped false)
-;    (modes melange)))
+;   @ahrefs
+;   (vendored_dirs bs-atdgen-codec-runtime)
+;   (dirs bs-atdgen-codec-runtime)
+;   (subdir
+;    bs-atdgen-codec-runtime
+;    (vendored_dirs src)
+;    (dirs src)
+;    (subdir
+;     src
+;     (library
+;      (name bs_atdgen_codec_runtime)
+;      (wrapped false)
+;      (libraries bs_json)
+;      (modes melange)))))
 ;  (subdir
-;   bs-decoders/src
-;   (library
-;    (name decoders)
-;    (modes melange)))
-;  (subdir
-;   bs-decoders/src-bs
-;   (library
-;    (name bs_decoders)
-;    (modes melange)
-;    (libraries decoders))))
+;   @glennsl
+;   (vendored_dirs bs-json)
+;   (dirs bs-json)
+;   (subdir
+;    bs-json
+;    (vendored_dirs src)
+;    (dirs src)
+;    (subdir
+;     src
+;     (library
+;      (name bs_json)
+;      (wrapped false)
+;      (modes melange)
+;      (preprocess
+;       (pps melange.ppx)))))))
 
 ; (env
 ;  (dev

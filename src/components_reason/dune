@@ -1,0 +1,6 @@
+(library
+ (name components_reason)
+ (libraries reason-react melange-fetch melange-json)
+ (modes melange)
+ (preprocess
+  (pps reactjs-jsx-ppx melange.ppx)))
