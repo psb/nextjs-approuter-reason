@@ -34,7 +34,7 @@ let fetchJoke = (callback, currentCount) => {
   Js.Dict.set(payload, "count", Json.Encode.int(currentCount));
   Js.Promise.(
     Fetch.fetchWithInit(
-      "/api/joke",
+      "/api/src/app/api_v1re/joke",
       Fetch.RequestInit.make(
         ~method_=Post,
         ~body=
@@ -79,10 +79,10 @@ let make = () => {
 
   let joke = data =>
     <>
-      <p className="p-6 mb-2 rounded-lg text-lg bg-yellow-400">
+      <p className="p-6 mb-2 rounded-lg text-black text-lg bg-yellow-400">
         {React.string(data.joke)}
       </p>
-      <p className="p-2 mb-2 rounded-md bg-orange-300">
+      <p className="p-2 mb-2 rounded-md text-black bg-orange-300">
         {let count = data.count;
          React.string({j|You have requested $count jokes.|j})}
       </p>

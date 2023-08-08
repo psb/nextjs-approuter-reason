@@ -1,7 +1,0 @@
-(library
- (name api_v1re)
- ; (libraries reason-react bs_json melange-fetch)
- ; (libraries reason-react melange-fetch)
- (modes melange)
- (preprocess
-  (pps melange.ppx)))
