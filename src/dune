@@ -1,8 +1,0 @@
-(melange.emit
- (target components)
- (alias react)
- (promote (until-clean))
- (libraries components_reason)
- (preprocess
-  (pps reactjs-jsx-ppx))
- (module_systems es6))

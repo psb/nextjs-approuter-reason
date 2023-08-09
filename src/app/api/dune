@@ -1,8 +1,7 @@
 (include_subdirs unqualified)
 
 (library
- (name api_v1re)
- ; (modules route)
+ (name api)
  (libraries melange-json melange-fetch)
  (modes melange)
  (preprocess

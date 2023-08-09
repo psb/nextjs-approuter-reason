@@ -1,49 +1,24 @@
+(melange.emit
+ (target nextjs)
+ (alias nextjs)
+ (module_systems es6)
+ (libraries app api components)
+ (runtime_deps
+  .eslintrc.json
+  .vercelignore
+  jsconfig.json
+  next-env.d.ts
+  next.config.js
+  package-lock.json
+  package.json
+  postcss.config.js
+  tailwind.config.js
+  tsconfig.json
+  (source_tree public)))
+
 (dirs :standard \ node_modules)
 
-; (subdir
-;  node_modules
-;  (vendored_dirs @ahrefs @glennsl)
-;  (dirs @ahrefs @glennsl)
-;  (subdir
-;   @ahrefs
-;   (vendored_dirs bs-atdgen-codec-runtime)
-;   (dirs bs-atdgen-codec-runtime)
-;   (subdir
-;    bs-atdgen-codec-runtime
-;    (vendored_dirs src)
-;    (dirs src)
-;    (subdir
-;     src
-;     (library
-;      (name bs_atdgen_codec_runtime)
-;      (wrapped false)
-;      (libraries bs_json)
-;      (modes melange)))))
-;  (subdir
-;   @glennsl
-;   (vendored_dirs bs-json)
-;   (dirs bs-json)
-;   (subdir
-;    bs-json
-;    (vendored_dirs src)
-;    (dirs src)
-;    (subdir
-;     src
-;     (library
-;      (name bs_json)
-;      (wrapped false)
-;      (modes melange)
-;      (preprocess
-;       (pps melange.ppx)))))))
-
-; (env
-;  (dev
-;   (flags
-;    (:standard -warn-error -A))))
-
-; (melange.emit
-;  (target functions)
-;  (alias node)
-;  (promote (until-clean))
-;  (libraries api)
-;  (module_systems es6))
+(env
+ (dev
+  (flags
+   (:standard -warn-error -69))))

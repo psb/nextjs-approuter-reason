@@ -1,8 +1,9 @@
-(melange.emit
- (target api)
- (alias node)
- (promote (until-clean))
- (libraries api_v1re)
+(include_subdirs unqualified)
+
+(library
+ (name app)
+ (modes melange)
+ (libraries api components reason-react)
+ (melange.runtime_deps favicon.ico globals.css)
  (preprocess
-  (pps reactjs-jsx-ppx))
- (module_systems es6))
+  (pps reactjs-jsx-ppx melange.ppx)))
