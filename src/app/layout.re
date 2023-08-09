@@ -1,18 +1,16 @@
 [%%bs.raw "import './globals.css'"];
+[%%bs.raw "import { Inter } from 'next/font/google'"];
+[%%bs.raw "const inter = Inter({ subsets: ['latin'] })"];
 
-type font_args = {subset: array(string)};
 type font;
 type metadata = {
   title: string,
   description: string,
 };
 
-[@bs.val] [@bs.module "next/font/google"]
-external inter: font_args => font = "Inter";
+[@bs.val] external inter: font = "inter";
 
 [@bs.get] external fontClassName: font => string = "className";
-
-let inter_font = inter({subset: [|"latin"|]});
 
 let metadata = {
   title: "Create Next App",
@@ -20,8 +18,8 @@ let metadata = {
 };
 
 [@react.component]
-let make = (~children) => {
+let default = (~children) => {
   <html lang="en">
-    <body className={fontClassName(inter_font)}> children </body>
+    <body className={fontClassName(inter)}> children </body>
   </html>;
 };

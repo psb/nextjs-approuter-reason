@@ -3,7 +3,7 @@
 (library
  (name app)
  (modes melange)
- (libraries api components reason-react)
+ (libraries reason-react components)
  (melange.runtime_deps favicon.ico globals.css)
  (preprocess
   (pps reactjs-jsx-ppx melange.ppx)))
