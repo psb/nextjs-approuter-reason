@@ -34,7 +34,7 @@ let fetchJoke = (callback, currentCount) => {
   Js.Dict.set(payload, "count", Json.Encode.int(currentCount));
   Js.Promise.(
     Fetch.fetchWithInit(
-      "/api/src/app/api_v1re/joke",
+      "/api/joke",
       Fetch.RequestInit.make(
         ~method_=Post,
         ~body=

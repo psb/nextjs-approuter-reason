@@ -77,10 +77,23 @@ let decodeJoke = (json): joke_result =>
 //         )
 //     )
 //   );
+type request;
+[@bs.val] external request: request = "request";
+[@bs.get] external get_body: request => string = "body";
 
-let handler = (event, _context, callback) => {
-  // let jokeCount = D.decode_string(jokeCountDecoder, event.body);
-  let jokeCount = decodeJokeCount(event.body);
+// module NextResponse = {
+// [@bs.module "next/server"] external nextRequest: unit => request = "NextRequest";
+type t;
+type message = {message: string};
+type status = {status: int};
+type next_response;
+[@bs.module "next/server"]
+external next_response: next_response = "NextResponse";
+[@bs.send] external next_json: (next_response, message, status) => t = "json";
+// };
+
+let handler = request => {
+  let jokeCount = decodeJokeCount(get_body(request));
   Js.log2("jokeCount", jokeCount);
 
   Js.Promise.(
@@ -108,7 +121,8 @@ let handler = (event, _context, callback) => {
                "status": data.status,
              }),
            );
-         resolve(callback(. None, {statusCode: 200, body}, ()));
+         //  resolve(callback(. None, {statusCode: 200, body}, ()));
+         resolve(next_json(next_response, {message: body}, {status: 200}));
        })
     |> catch(err => {
          Js.log2("server Error Json", err);
@@ -120,64 +134,113 @@ let handler = (event, _context, callback) => {
                "status": 500,
              }),
            );
-         resolve(callback(. None, {statusCode: 500, body}, ()));
+         //  resolve(callback(. None, {statusCode: 500, body}, ()));
+         resolve(next_json(next_response, {message: body}, {status: 500}));
        })
   );
-  // |> then_(json => {
-  //      //  Js.log2("json", json);
-  //      let data = D.decode_value(jokeDecoder, json);
-  //      let body = {
-  //        switch (data, jokeCount) {
-  //        | (Ok(d), Ok(jc)) =>
-  //          Js.Json.stringify(
-  //            Obj.magic({
-  //              "joke": d.joke,
-  //              "count": jc.count + 1,
-  //              "status": d.status,
-  //            }),
-  //          )
-  //        | (Ok(d), Error(ejc)) =>
-  //          Js.Json.stringify(
-  //            Obj.magic({
-  //              "joke": d.joke,
-  //              "count": D.string_of_error(ejc),
-  //              "status": d.status,
-  //            }),
-  //          )
-  //        | (Error(ed), Ok(jc)) =>
-  //          Js.Json.stringify(
-  //            Obj.magic({
-  //              "joke": D.string_of_error(ed),
-  //              "count": jc.count,
-  //              "status": 500,
-  //            }),
-  //          )
-  //        | (Error(ed), Error(ejc)) =>
-  //          Js.Json.stringify(
-  //            Obj.magic({
-  //              "joke": D.string_of_error(ed),
-  //              "count": D.string_of_error(ejc),
-  //              "status": 500,
-  //            }),
-  //          )
-  //        };
-  //      };
-  //      resolve(callback(. None, {statusCode: 200, body}, ()));
-  //    })
-  // |> catch(err => {
-  //      Js.log2("server Error Json", err);
-  //      let body =
-  //        Js.Json.stringify(
-  //          Obj.magic({
-  //            "joke": err,
-  //            "count":
-  //              switch (jokeCount) {
-  //              | Ok(jc) => string_of_int(jc.count)
-  //              | Error(ejc) => D.string_of_error(ejc)
-  //              },
-  //            "status": 500,
-  //          }),
-  //        );
-  //      resolve(callback(. None, {statusCode: 500, body}, ()));
-  //    })
 };
+
+[%%bs.raw {|export const POST = handler|}];
+// let handler = (event, _context, callback) => {
+//   // let jokeCount = D.decode_string(jokeCountDecoder, event.body);
+//   let jokeCount = decodeJokeCount(event.body);
+//   Js.log2("jokeCount", jokeCount);
+
+//   Js.Promise.(
+//     Fetch.fetchWithInit(
+//       "https://icanhazdadjoke.com/",
+//       Fetch.RequestInit.make(
+//         ~method_=Get,
+//         ~headers=
+//           Fetch.HeadersInit.make({
+//             "Accept": "application/json",
+//             "User-Agent": "astro-reason (https://github.com/psb/astro-reason)",
+//           }),
+//         (),
+//       ),
+//     )
+//     |> then_(Fetch.Response.json)
+//     |> then_(json => {
+//          Js.log2("json", json);
+//          let data = decodeJoke(json);
+//          let body =
+//            Js.Json.stringify(
+//              Obj.magic({
+//                "joke": data.joke,
+//                "count": jokeCount.count + 1,
+//                "status": data.status,
+//              }),
+//            );
+//          resolve(callback(. None, {statusCode: 200, body}, ()));
+//        })
+//     |> catch(err => {
+//          Js.log2("server Error Json", err);
+//          let body =
+//            Js.Json.stringify(
+//              Obj.magic({
+//                "joke": err,
+//                "count": jokeCount.count,
+//                "status": 500,
+//              }),
+//            );
+//          resolve(callback(. None, {statusCode: 500, body}, ()));
+//        })
+//   );
+// |> then_(json => {
+//      //  Js.log2("json", json);
+//      let data = D.decode_value(jokeDecoder, json);
+//      let body = {
+//        switch (data, jokeCount) {
+//        | (Ok(d), Ok(jc)) =>
+//          Js.Json.stringify(
+//            Obj.magic({
+//              "joke": d.joke,
+//              "count": jc.count + 1,
+//              "status": d.status,
+//            }),
+//          )
+//        | (Ok(d), Error(ejc)) =>
+//          Js.Json.stringify(
+//            Obj.magic({
+//              "joke": d.joke,
+//              "count": D.string_of_error(ejc),
+//              "status": d.status,
+//            }),
+//          )
+//        | (Error(ed), Ok(jc)) =>
+//          Js.Json.stringify(
+//            Obj.magic({
+//              "joke": D.string_of_error(ed),
+//              "count": jc.count,
+//              "status": 500,
+//            }),
+//          )
+//        | (Error(ed), Error(ejc)) =>
+//          Js.Json.stringify(
+//            Obj.magic({
+//              "joke": D.string_of_error(ed),
+//              "count": D.string_of_error(ejc),
+//              "status": 500,
+//            }),
+//          )
+//        };
+//      };
+//      resolve(callback(. None, {statusCode: 200, body}, ()));
+//    })
+// |> catch(err => {
+//      Js.log2("server Error Json", err);
+//      let body =
+//        Js.Json.stringify(
+//          Obj.magic({
+//            "joke": err,
+//            "count":
+//              switch (jokeCount) {
+//              | Ok(jc) => string_of_int(jc.count)
+//              | Error(ejc) => D.string_of_error(ejc)
+//              },
+//            "status": 500,
+//          }),
+//        );
+//      resolve(callback(. None, {statusCode: 500, body}, ()));
+//    })
+// };
