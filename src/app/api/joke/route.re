@@ -1,3 +1,5 @@
+open Server_bindings;
+
 type joke_count = {count: int};
 
 type joke_result = {
@@ -16,17 +18,6 @@ let decodeJoke = (json): joke_result =>
     status: json |> field("status", int),
     id: json |> field("id", string),
   };
-
-type request;
-[@bs.val] external request: request = "request";
-[@bs.send] external request_json: request => Js.Promise.t(Js_json.t) = "json";
-
-type t;
-type message = {message: string};
-type status = {status: int};
-type response;
-[@bs.module "next/server"] external response: response = "NextResponse";
-[@bs.send] external response_json: (response, message, status) => t = "json";
 
 let handler = request => {
   let jokeCount =
