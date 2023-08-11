@@ -4,6 +4,8 @@ type joke = {
   count: int,
 };
 
+type message = {message: joke};
+
 type state = {
   data: joke,
   loading: bool,
@@ -22,12 +24,16 @@ let initialState = {
   loading: false,
 };
 
-let decodeFetchResult = (json): joke =>
+let decodeJoke = (json): joke => {
   Json.Decode.{
     joke: json |> field("joke", string),
     status: json |> field("status", int),
     count: json |> field("count", int),
   };
+};
+
+let decodeMessage = (json): message =>
+  Json.Decode.{message: json |> field("message", decodeJoke)};
 
 let fetchJoke = (callback, currentCount) => {
   let payload = Js.Dict.empty();
@@ -45,8 +51,9 @@ let fetchJoke = (callback, currentCount) => {
     )
     |> then_(Fetch.Response.json)
     |> then_(json => {
-         let data = decodeFetchResult(json);
-         callback(data);
+         //  Js.log2("Message Json", json);
+         let data = decodeMessage(json);
+         callback(data.message);
          resolve();
        })
     |> catch(err => {
