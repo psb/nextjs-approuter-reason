@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "cd _build/default/nextjs && next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "build": "cd _build/default/nextjs && next build",
+    "start": "cd _build/default/nextjs && next start",
+    "lint": "cd _build/default/nextjs && next lint"
   },
   "dependencies": {
     "@types/node": "^20.4.5",
