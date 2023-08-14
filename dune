@@ -2,7 +2,7 @@
  (target nextjs)
  (alias nextjs)
  (module_systems es6)
- (libraries app api components)
+ (libraries app api components bindings)
  (runtime_deps
   .eslintrc.json
   .vercelignore

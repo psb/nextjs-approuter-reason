@@ -1,4 +1,4 @@
-open Server_bindings;
+open Bindings.Server;
 
 type joke_count = {count: int};
 

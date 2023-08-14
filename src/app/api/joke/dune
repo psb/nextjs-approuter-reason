@@ -1,0 +1,6 @@
+(library
+ (name joke)
+ (libraries melange-fetch melange-json bindings)
+ (modes melange)
+ (preprocess
+  (pps melange.ppx)))

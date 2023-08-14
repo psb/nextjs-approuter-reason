@@ -1,0 +1,5 @@
+(library
+ (name bindings)
+ (modes melange)
+ (preprocess
+  (pps melange.ppx)))
