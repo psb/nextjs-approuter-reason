@@ -1,7 +1,7 @@
 open Components;
 
 [@react.component]
-let default = () => {
+let make = () => {
   <main
     className="flex min-h-screen flex-col items-center justify-between p-24">
     <div

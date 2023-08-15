@@ -1,9 +1,7 @@
-; (include_subdirs qualified)
-
 (library
  (name app)
  (modes melange)
  (libraries reason-react components dogs jokes api)
- (melange.runtime_deps favicon.ico globals.css)
+ (melange.runtime_deps favicon.ico globals.css layout.js page.js)
  (preprocess
   (pps reactjs-jsx-ppx melange.ppx)))

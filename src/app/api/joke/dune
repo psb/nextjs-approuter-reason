@@ -3,4 +3,5 @@
  (libraries melange-fetch melange-json bindings)
  (modes melange)
  (preprocess
-  (pps melange.ppx)))
+  (pps melange.ppx))
+ (melange.runtime_deps route.js))

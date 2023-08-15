@@ -4,7 +4,6 @@
  (module_systems es6)
  (libraries app api components bindings)
  (runtime_deps
-  .eslintrc.json
   .vercelignore
   jsconfig.json
   next-env.d.ts
@@ -21,4 +20,4 @@
 (env
  (dev
   (flags
-   (:standard -warn-error -69))))
+   (:standard -warn-error -69-32))))

@@ -18,7 +18,7 @@ let metadata = {
 };
 
 [@react.component]
-let default = (~children) => {
+let make = (~children) => {
   <html lang="en">
     <body className={fontClassName(inter)}> children </body>
   </html>;

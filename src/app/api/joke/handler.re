@@ -78,4 +78,4 @@ let handler = request => {
   );
 };
 
-[%%bs.raw {|export const POST = handler|}];
+// [%%bs.raw {|export const POST = handler|}];

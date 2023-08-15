@@ -5,4 +5,4 @@ type metadata = {
 let metadata: metadata;
 
 [@react.component]
-let default: (~children: React.element) => React.element;
+let make: (~children: React.element) => React.element;
