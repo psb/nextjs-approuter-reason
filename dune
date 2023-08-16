@@ -1,14 +1,12 @@
 (melange.emit
- (target nextjs)
+ (target nextjs-app-folder-reason)
  (alias nextjs)
  (module_systems es6)
  (libraries app api components bindings)
  (runtime_deps
-  .vercelignore
   jsconfig.json
   next-env.d.ts
   next.config.js
-  package-lock.json
   package.json
   postcss.config.js
   tailwind.config.js
