@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cd _build/default/nextjs-app-folder-reason && next dev",
+    "dev": "next dev",
     "build": "next build",
-    "build-local": "cd _build/default/nextjs-app-folder-reason && next build",
-    "start": "cd _build/default/nextjs-app-folder-reason && next start",
-    "lint": "cd _build/default/nextjs-app-folder-reason && next lint"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@types/node": "^20.4.5",

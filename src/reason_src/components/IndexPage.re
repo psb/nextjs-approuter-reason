@@ -1,5 +1,3 @@
-open Components;
-
 [@react.component]
 let make = () => {
   <main

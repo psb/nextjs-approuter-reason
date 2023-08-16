@@ -1,7 +1,7 @@
 "use client";
 
-import { make as Dogs } from "./dogs";
+import { make as Dog } from "@/reason_output/src/reason_src/components/Dog";
 
 export default function Page() {
-  return <Dogs />;
+  return <Dog />;
 }

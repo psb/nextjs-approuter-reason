@@ -1,0 +1,6 @@
+(melange.emit
+ (target reason_output)
+ (alias reason)
+ (module_systems es6)
+ (libraries components bindings api)
+ (promote (until-clean)))

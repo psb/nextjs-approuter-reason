@@ -1,18 +1,3 @@
-(melange.emit
- (target nextjs-app-folder-reason)
- (alias nextjs)
- (module_systems es6)
- (libraries app api components bindings)
- (runtime_deps
-  jsconfig.json
-  next-env.d.ts
-  next.config.js
-  package.json
-  postcss.config.js
-  tailwind.config.js
-  tsconfig.json
-  (source_tree public)))
-
 (dirs :standard \ node_modules)
 
 (env

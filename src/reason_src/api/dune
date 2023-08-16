@@ -1,7 +1,6 @@
 (library
- (name joke)
+ (name api)
  (libraries melange-fetch melange-json bindings)
  (modes melange)
  (preprocess
-  (pps melange.ppx))
- (melange.runtime_deps route.js))
+  (pps melange.ppx)))

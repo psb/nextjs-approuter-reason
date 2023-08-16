@@ -1,7 +1,0 @@
-(library
- (name dogs)
- (libraries reason-react melange-fetch melange-json components)
- (modes melange)
- (melange.runtime_deps page.js)
- (preprocess
-  (pps reactjs-jsx-ppx melange.ppx)))
