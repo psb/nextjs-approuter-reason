@@ -39,7 +39,7 @@ dev: ## Serve the application with a local HTTP server
 
 .PHONY: bundle
 bundle: ## Bundle the JS
-	npm run build-local
+	npm run build
 
 .PHONY: preview
 preview: ## Preview the built JS
