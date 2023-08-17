@@ -1,6 +1,6 @@
-# NextJs `app` Folder and Reason
+# NextJs App Router and Reason
 
-This is a basic project that shows you how you can mix [NextJS](https://nextjs.org) with [Reason](https://reasonml.github.io/en), [Reason React](https://reasonml.github.io/reason-react/en), and use the NextJS `app` folder. The project uses [Melange](https://melange.re/v1.0.0/) to transform the Reason code to JS.
+This is a basic project that shows you how you can mix [NextJS](https://nextjs.org) with [Reason](https://reasonml.github.io/en), [Reason React](https://reasonml.github.io/reason-react/en), and use the NextJS App Router. The project uses [Melange](https://melange.re/v1.0.0/) to transform the Reason code to JS.
 
 This project was an attempt to do everything in Reason but it did not go well. Therefore, Reason is used for most of the code and JS is used as a wrapper in order to comply with NextJS conventions/restrictions. See [this blog post]() for more details.
 
