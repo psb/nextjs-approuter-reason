@@ -67,13 +67,13 @@ This project is deployed at: https://nextjs-approuter-reason.vercel.app/
 
 ### `app` Folder Files
 
-The JS files in the `app` folder act as thin wrapper around ReasonReact components.
+The JS files in the `app` folder act as thin wrapper around ReasonReact components and server functions.
 
 ### `reason_src` Files
 
 The main Reason and ReasonReact files are in this folder.
 
-It is worth noting that the JS is first built into the `_build` directory and then "promoted" back out to the `src/reason_output` directory. This makes it easier to import components into the `app` folder files.
+It is worth noting that the JS is first built into the `_build` directory and then "promoted" back out to the `src/reason_output` directory. This makes it easier to import components and functions into the `app` folder files.
 
 ### Other Files
 
